@@ -1,0 +1,19 @@
+# Ansible playbook Postgres container setup
+---
+- name: "Postgres container setup"
+  hosts: task
+  become: yes
+  tasks:
+    - name: docker pull postgres
+      shell: "docker pull postgres"
+
+    - name: Up a container with the image
+      shell: "docker run -d \
+              --name postgres \
+              -e POSTGRES_PASSWORD=mysecretpassword \
+              -e PGDATA=/var/lib/postgresql/data/pgdata \
+              -v /custom/mount:/var/lib/postgresql/data \
+              postgres"
+
+    - name: Connected the container to the network
+      shell: "docker network connect taskNetwork postgres"

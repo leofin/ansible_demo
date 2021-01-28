@@ -1,0 +1,14 @@
+# Ansible playbook SonarQube container setup
+---
+- name: "SonarQube container setup"
+  hosts: task
+  become: yes
+  tasks:
+    - name: docker pull sonarqube
+      shell: "docker pull sonarqube"
+
+    - name: Up a container with the image
+      shell: "docker run -d --name sonarqube -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p 9000:9000 sonarqube:latest"
+
+    - name: Connected the container to the network
+      shell: "docker network connect taskNetwork sonarqube"

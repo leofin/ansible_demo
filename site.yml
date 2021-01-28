@@ -1,0 +1,10 @@
+---
+# This Playbook would deploy the whole cluster.
+
+- hosts: task
+  roles:
+  - role: docker
+
+- hosts: task
+  roles:
+  - role: sonarqube
