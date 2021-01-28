@@ -1,19 +1,19 @@
-# Ansible playbook Postgres container setup
 ---
-- name: "Postgres container setup"
-  hosts: task
-  become: yes
-  tasks:
-    - name: docker pull postgres
-      shell: "docker pull postgres"
+# Ansible playbook Postgres setup
 
-    - name: Up a container with the image
-      shell: "docker run -d \
-              --name postgres \
-              -e POSTGRES_PASSWORD=mysecretpassword \
-              -e PGDATA=/var/lib/postgresql/data/pgdata \
-              -v /custom/mount:/var/lib/postgresql/data \
-              postgres"
+- name: docker pull postgres:12
+  shell: docker pull postgres:12
 
-    - name: Connected the container to the network
-      shell: "docker network connect taskNetwork postgres"
+- name: Up a container with the image
+  shell: docker run -d \
+    --name postgres \
+    -e POSTGRES_PASSWORD=mysecretpassword \
+    -e PGDATA=/var/lib/postgresql/data/pgdata \
+    -v /custom/mount:/var/lib/postgresql/data \
+    postgres:12
+
+- name: Connected the container to the network
+  shell: "docker network connect taskNetwork postgres"
+
+- name: Create database sonarqube
+  shell: docker exec -it postgres psql -U postgres -c 'create database sonarqube'

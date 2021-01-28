@@ -1,10 +1,12 @@
----
 # This Playbook would deploy the whole cluster.
 
-- hosts: task
-  roles:
-  - role: docker
+---
 
-- hosts: task
+- name: "Configurate machine"
+  hosts: abudhabi
+  become: yes
+
   roles:
-  - role: sonarqube
+    - role: docker
+    - role: postgres
+    - role: sonarqube

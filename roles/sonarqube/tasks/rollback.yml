@@ -1,0 +1,11 @@
+---
+# Ansible playbook Postgres container setup
+
+- name: SonarQube delete container
+  become: yes
+  tasks:
+    - name: Stop the SonarQube container
+      shell: docker stop sonarqube
+
+    - name: Delete the SonarQube container
+      shell: docker rm sonarqube

@@ -1,0 +1,11 @@
+---
+# Ansible playbook Postgres container setup
+
+- name: Postgres delete container
+  become: yes
+  tasks:
+    - name: Stop the postgres container
+      shell: docker stop postgres
+
+    - name: Delete the postgres container
+      shell: docker rm postgres
