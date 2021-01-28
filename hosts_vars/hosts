@@ -1,0 +1,5 @@
+[task]
+15.185.223.198
+[task:vars]
+ansible_password=test
+ansible_user=task
