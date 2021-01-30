@@ -1,6 +1,6 @@
 [abudhabi]
 15.185.223.198
 [abudhabi:vars]
-ansible_password=teste
+ansible_password=test
 ansible_user=task
-ansible_sudo_pass=teste
+ansible_sudo_pass=test

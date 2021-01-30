@@ -29,6 +29,3 @@
     name: docker
     state: started
     enabled: yes
-
-- name: Create a docker network to containers
-  shell: docker network create taskNetwork
