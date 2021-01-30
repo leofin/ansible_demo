@@ -22,8 +22,6 @@
       SONAR_JDBC_USERNAME: "{{ postgres_user }}"
       SONAR_JDBC_PASSWORD: "{{ postgres_password }}"
     healthcheck:
-      # Check if nginx server is healthy by curl'ing the server.
-      # If this fails or timeouts, the healthcheck fails.
       test: ["CMD", "curl", "--fail", "http://http://15.185.223.198:9000/"]
       interval: 1m30s
       timeout: 10s
