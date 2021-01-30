@@ -6,13 +6,15 @@
     name: postgres
     image: postgres:12
     container_default_behavior: compatibility
+    network_mode: default
     networks:
-      - name: "taskNetwork"
+      - name: "{{ taskNetwork }}"
     volumes:
       - /custom/mount:/var/lib/postgresql/data
     env:
-      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_PASSWORD: "{{ postgres_password }}"
       PGDATA: /var/lib/postgresql/data/pgdata
+    purge_networks: yes
 
 - name: Create database sonarqube
   shell: docker exec -it postgres psql -U postgres -c 'create database sonarqube'

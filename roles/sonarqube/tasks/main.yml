@@ -8,8 +8,9 @@
     container_default_behavior: compatibility
     ulimits:
       - nofile:65536:65536
+    network_mode: default
     networks:
-      - name: "taskNetwork"
+      - name: "{{ taskNetwork }}"
     ports:
       - "9000:9000"
     volumes:
@@ -18,8 +19,8 @@
       - sonarqube_logs:/opt/sonarqube/logs
     env:
       SONAR_JDBC_URL: jdbc:postgresql://postgres:5432/sonarqube
-      SONAR_JDBC_USERNAME: "postgres"
-      SONAR_JDBC_PASSWORD: "mysecretpassword"
+      SONAR_JDBC_USERNAME: "{{ postgres_user }}"
+      SONAR_JDBC_PASSWORD: "{{ postgres_password }}"
     healthcheck:
       # Check if nginx server is healthy by curl'ing the server.
       # If this fails or timeouts, the healthcheck fails.
@@ -28,3 +29,4 @@
       timeout: 10s
       retries: 3
       start_period: 30s
+    purge_networks: yes

@@ -29,3 +29,7 @@
     name: docker
     state: started
     enabled: yes
+
+- name: Create a network
+  community.general.docker_network:
+    name: "{{ taskNetwork }}"

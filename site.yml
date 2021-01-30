@@ -5,7 +5,6 @@
 - name: "Configurate machine"
   hosts: abudhabi
   become: yes
-
   roles:
     - role: docker
     - role: postgres
