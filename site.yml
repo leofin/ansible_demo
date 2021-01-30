@@ -3,7 +3,7 @@
 ---
 
 - name: "Configurate machine"
-  hosts: abudhabi
+  hosts: sonar_project
   become: yes
   roles:
     - role: docker
