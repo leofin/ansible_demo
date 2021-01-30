@@ -1,7 +1,10 @@
 # ansible_demo
 working with ansible to setup a machine with SonarQube's docker image using postgres as DB
 
-## Hello world with Ansible
+## To setup the enviroment with Ansible
 ```shell
-ansible all -m ping -i host_vars/hosts
+ansible-playbook -i hosts_vars/hosts site.yml
 ```
+
+## URL to access the enviroment
+http://15.185.223.198:9000/
